@@ -72,14 +72,14 @@ namespace Catalog.API.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
         public async Task<IActionResult> UpdateProduct([FromBody] Product product)
         {
             return Ok(await _productRepository.UpdateProduct(product));
         }
 
         [HttpDelete("{id:length(24)}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
         public async Task<IActionResult> DeleteProduct(string id)
         {
             return Ok(await _productRepository.DeleteProduct(id));
