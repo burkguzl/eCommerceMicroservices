@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Ordering.Application;
+using Ordering.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,9 @@ namespace Ordering.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ordering.API", Version = "v1" });
             });
+
+            services.AddApplicationServices();
+            services.AddInfrastructureServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
