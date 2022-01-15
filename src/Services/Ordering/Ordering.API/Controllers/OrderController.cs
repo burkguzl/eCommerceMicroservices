@@ -34,7 +34,7 @@ namespace Ordering.API.Controllers
         }
 
         //Testing purpose
-        [HttpGet(Name = "GetOrder")]
+        [HttpGet(Name = "CheckoutOrder")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<int>> CheckoutOrder([FromBody] CheckoutOrderCommand command)
         {
@@ -42,7 +42,7 @@ namespace Ordering.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet(Name = "UpdateOrder")]
+        [HttpPut(Name = "UpdateOrder")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult> UpdateOrder([FromBody] UpdateOrderCommand command)
