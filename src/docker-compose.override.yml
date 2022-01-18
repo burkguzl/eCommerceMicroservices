@@ -36,6 +36,13 @@ services:
       SA_PASSWORD: "Burak1903*"
       ACCEPT_EULA: "Y"
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   pgadmin:
     container_name: pgadmin
     environment:
@@ -91,7 +98,7 @@ services:
 
 
   discount.grpc:
-    container_name:  discount.grpc
+    container_name: discount.grpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=Discountdb;User Id=admin;Password=admin1234;"
@@ -99,4 +106,15 @@ services:
       - discountdb
     ports:
       - "8003:80"
+
+
+  ordering.api:
+    container_name: ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderingConnectionString=Server=orderdb,1433;Database=OrderDb;User Id=sa;Password=Burak1903*;"
+    depends_on:
+      - orderdb
+    ports:
+      - "8004:80"
 
